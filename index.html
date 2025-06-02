@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pengumuman Kelulusan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            color: #003366;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        .result {
+            margin-top: 20px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <h2>SMP NEGERI 2 ARJOSARI</h2>
+    <p>Tahun Ajaran 2024/2025</p>
+    <div class="container">
+        <input type="text" id="nisn" placeholder="Masukkan NISN">
+        <input type="text" id="dob" placeholder="Tanggal Lahir (dd-mm-yyyy)">
+        <button onclick="cekKelulusan()">Login</button>
+        <div class="result" id="result"></div>
+    </div>
+    <script src="data.js"></script>
+    <script>
+        function cekKelulusan() {
+            const nisn = document.getElementById('nisn').value.trim();
+            const dob = document.getElementById('dob').value.trim();
+            const siswa = dataSiswa.find(s => s.nisn === nisn && s.tanggal_lahir === dob);
+            const result = document.getElementById('result');
+            if (siswa) {
+                result.innerText = `NISN: ${siswa.nisn}
+NIS: ${siswa.nis}
+Nama: ${siswa.nama}
+TTL: ${siswa.tempat_lahir}, ${siswa.tanggal_lahir}
+Orang Tua: ${siswa.orang_tua}
+Rata-Rata Nilai: ${siswa.nilai}
+Status: ${siswa.status}
+
+📢 INFORMASI PENTING:
+1. Dilarang Coret-Coret Baju/Seragam Sekolah, Rambut Dll.
+2. Dilarang melakukan Konvoi Kendaraan Bermotor
+3. Informasi Lebih Lanjut Akan Diinformasikan Melalui WA Group
+
+Ingatlah selalu, bahwa kalian adalah bagian dari keluarga besar SMP Negeri 2 Arjosari. Jaga nama baik almamater, dan teruslah berprestasi.`;
+            } else {
+                result.innerText = "Data tidak ditemukan. Periksa kembali NISN dan Tanggal Lahir.";
+            }
+        }
+    </script>
+</body>
+</html>
